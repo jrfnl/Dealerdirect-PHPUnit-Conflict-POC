@@ -1,0 +1,26 @@
+sudo: false
+
+language:
+    - php
+
+dist: trusty
+
+php:
+    - 5.4
+    - 5.5
+    - 5.6
+    - 7.0
+    - 7.1
+    - 7.2
+    - 7.3
+    - nightly
+
+before_install:
+  - phpenv config-rm xdebug.ini || echo 'No xdebug config.'
+  - composer install --no-suggest
+
+install:
+  - composer phpcs-i
+
+script:
+  - composer check-cs
